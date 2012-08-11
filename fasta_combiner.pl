@@ -17,6 +17,7 @@ if ( not -d $path) {
 my @chr_list = (1..22,"X","Y","M");
 my @file_list = map { $_ = $path."/chr$_.fa";} @chr_list;
 
+#open each source and print its contents to stdout
 for my $file (@file_list) {
     my $fh = IO::File->new($file);
     while ( my $line = $fh->getline) {
@@ -24,8 +25,6 @@ for my $file (@file_list) {
     }
     $fh->close;
 }
-
-print @chr_list;
 
 sub usage {
     print "\nusage:   ./fasta_combiner.pl <path/to/input/fastas>\n";
